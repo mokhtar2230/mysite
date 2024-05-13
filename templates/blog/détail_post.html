@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #fff8f8;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        strong {
+            color: #fff8f8;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+        a {
+            color: #fff8f8;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .post-card {
+    position: relative; /* Gardez la position relative */
+    background-color: #0e1238; /* Couleur de fond */
+    border: 1px solid #dee2e6; /* Couleur de bordure */
+    border-radius: 8px;
+    margin: 0 auto; /* Centrez horizontalement */
+    margin-top: 20px; /* Ajoutez de la marge en haut */
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    height: 600px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="post-card">
+    <h1 style="color: #e8984c;">{{ posts.title }}</h1>
+    <p style="color: #fff8f8;"><strong>Author:</strong> {{ posts.author }}</p>
+    <p style="color: #fff8f8;"><strong>Created On:</strong> {{ posts.created_on }}</p>
+    <p style="color: #fff8f8;" ><strong>Status:</strong> {% if posts.status == 0 %} Draft {% else %} Publish {% endif %}</p>
+    <p style="color: #fff8f8;" >{{ posts.content }}</p>
+    {% if posts.image %}
+        <img src="{{ posts.image.url }}" alt="{{ posts.title }}"  style="    width: 580px;  height: 300px;">
+    {% endif %}
+    <a href="{% url 'modifier_post' pk=posts.pk %}">modifier</a>
+    <a href="{% url 'supprimer_post' pk=posts.pk %}">supprimer</a>
+</div>
+</body>
+</html>

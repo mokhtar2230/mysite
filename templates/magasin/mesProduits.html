@@ -1,0 +1,66 @@
+{% extends 'magasin/base.html' %}
+
+{% block title %}Catalogue de produits{% endblock title %}
+{% load static %}
+{% block styles %}
+<style>
+/* Custom styles for product cards */
+.card {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+    <!-- Body -->
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <!-- All products -->
+            <div id='products' class="col-lg-9 mx-auto">
+                <div class="row">
+                  
+                    {% for product in products %}
+                        <div class="col-md-4" >
+                            <div class="card">
+                                <img src="{{ product.img.url }}" alt="{{ product.libelle }}" class="card-img-top" >
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.libelle }}</h5>
+                                    <p class="card-text">{{ product.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

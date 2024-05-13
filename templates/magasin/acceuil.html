@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Accueil</title>
+<style>
+    html, body {
+        height: 800PX;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #082f56;
+        font-family: Arial, sans-serif;
+    }
+    #conteneur {
+        width: 800PX;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    #header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #header span {
+        color: #e8984c;
+        font-weight: bold;
+        font-size: 24px;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+    nav ul li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+        color: #007bff;
+    }
+</style>
+</head>
+<body>
+<div id="conteneur"> 
+<h1 id="header"><a href="#" title=" Accueil"><span>choisir une Application </span></a></h1>
+<nav>
+<ul>
+<li><a href="{% url 'index' %}">Application n°1 : Magasin</a></li>
+<li><a href="/blog">Application n°2 : Blog</a></li>
+<li><a href="#">Application n°3 : </a></li> 
+</ul>
+</nav>
+</div> <!-- Fermeture de #conteneur -->
+</body>
+</html>

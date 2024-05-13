@@ -1,0 +1,174 @@
+
+<style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    nav {
+      background: #0e1238;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      position: fixed; /* Fixe la barre de navigation */
+      width: 100%; 
+      height: 10%;/* Utilise toute la largeur de la fenêtre */
+      top: 0; /* Place la barre de navigation en haut de la fenêtre */
+      z-index: 1000; /* Assure que la barre de navigation est au-dessus du contenu */
+    }
+    ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    li {
+      margin: 0 10px;
+    }
+    a {
+      color: #FFF;
+      text-decoration: none;
+      font-size: 20px;
+      position: relative;
+    }
+    a:hover {
+      color: #fff;
+    }
+    a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #e8984c;
+      bottom: -3px;
+      left: 0;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    a:hover::after {
+      transform: scaleX(1);
+    }
+    h1 {
+      margin: 0;
+    }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+    }
+    button::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #e8984c;
+      bottom: -3px;
+      left: 0;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    button:hover::after {
+      transform: scaleX(1);
+    }
+
+
+    .container {
+            padding: 20px;
+        }
+
+        /* Styles pour les cartes des posts */
+        .post-card {
+    position: relative; /* Gardez la position relative */
+    background-color: #0e1238; /* Couleur de fond */
+    border: 1px solid #dee2e6; /* Couleur de bordure */
+    border-radius: 8px;
+    margin: 0 auto; /* Centrez horizontalement */
+    margin-top: 20px; /* Ajoutez de la marge en haut */
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    height: 600px;
+}
+
+
+        /* Styles pour le titre du post */
+        .post-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #dee2e6; /* Couleur du texte */
+        }
+
+        /* Styles pour le nom de l'auteur et la date */
+        .author-date {
+            font-size: 14px;
+            color: #dee2e6; /* Couleur du texte */
+            margin-bottom: 10px;
+        }
+
+        /* Styles pour le contenu du post */
+        .post-content {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #dee2e6; /* Couleur du texte */
+        }
+
+        /* Styles pour l'image du post */
+        .post-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Styles pour les boutons */
+        .btn-primary {
+            background-color: #007bff; /* Couleur de fond */
+            border-color: #007bff; /* Couleur de bordure */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Couleur de fond au survol */
+            border-color: #0056b3; /* Couleur de bordure au survol */
+        }
+  </style>
+</head>
+
+  <nav>
+    <ul>
+      <li>
+        <a href="">
+          <h1 style="color: #FFF;">List of Posts</h1>
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <button><a href="{% url 'creer_post' %}">new post</a></button>
+      </li>
+    </ul>
+  </nav>
+
+  <br>
+  <br>
+  <br> 
+  <p></p>
+  <div class="container mt-4">
+ <br>
+    {% for post in posts %}
+        <div class="post-card">
+            <h2 class="post-title" style="   color: #e8984c;  text-align: center;">{{ post.title }}</h2>
+            <br>
+            <p class="author-date">Publié par {{ post.author }} le {{ post.created_on }}</p>
+            <p class="post-content">{{ post.content }}</p>
+            {% if post.image %}
+                <a href="{% url 'detail_post' post.pk %}"><img class="post-image" src="{{ post.image.url }}" alt="Image du Post" style="    width: 580px;
+                    height: 300px;"></a>
+            {% endif %}
+            <p  style="color: #dee2e6;" >Statut: {% if post.status == 0 %} Brouillon {% else %} Publié {% endif %}</p>
+        </div>
+    {% empty %}
+        <p>Aucun post disponible pour le moment.</p>
+    {% endfor %}
+</div>
+
+
